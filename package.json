@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/IvanFFRR/galmintools/issues"
   },
-  "homepage": "https://github.com/IvanFFRR/galmintools#readme"
+  "homepage": "https://github.com/IvanFFRR/galmintools#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
 }

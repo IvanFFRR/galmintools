@@ -1,4 +1,4 @@
-const fs = require('fs')
+
 
 async function UpdateOpalsCount() {
     var form = document.getElementById("Form");
@@ -12,14 +12,9 @@ async function UpdateOpalsCount() {
 };
 
 async function Init() {
-    json = await FetchJson();
     UpdateOpalsCount();
 }
 
-async function FetchJson() {
-    var rq = await fetch("./data.json")
-    return await rq.json();
-}
 
 var networth = 0;
 var json = [];
@@ -42,20 +37,22 @@ function MineOpals() {
     var jewellersFee = jeweller.checked ? 2 : 0;
     var minersFee = miners.value * 0.2;
     var net = gross - jewellersFee - minersFee;
-
+    var playersProfit = net / 5;
     var grossFormatted = `${gross} de oro`
 
     var jewellersFeeFormatted = "";
     if (jeweller.checked) jewellersFeeFormatted += `${jewellersFee} de oro`;
 
+    
     var minersFeeFormatted = FormatCoins(minersFee);
     var netFormatted = FormatCoins(net);
+    var playerProfitFormatted = FormatCoins(playersProfit);
 
     row.insertCell(3).innerHTML = grossFormatted;
     row.insertCell(4).innerHTML = jewellersFeeFormatted;
     row.insertCell(5).innerHTML = minersFeeFormatted;
     row.insertCell(6).innerHTML = netFormatted;
-
+    row.insertCell(7).innerHTML = playerProfitFormatted
     networth += net;
     var span = document.getElementById("NetWorthNumber");
     span.innerText = FormatCoins(networth);
@@ -69,18 +66,24 @@ function MineOpals() {
         miners: parseInt(miners.value),
         minersFee: minersFee,
         netProfit: net,
+        playerProfit: playersProfit
     }
 
-    json.push(object);
 
 }
 
 function FormatCoins(number) {
     var gold = Math.floor(number);
-    var silver = Math.round((number - gold) * 10);
+    var silver = (number - gold) * 10;
+    var copper = Math.round((silver - Math.floor(silver)) * 10);
+    if(copper >= 10) {
+        silver++;
+        copper =- 10;
+    }
+
     var total = gold > 0 ? `${gold} de oro` : "";
-    if(gold > 0 && silver > 0) total += " y ";
-    if (silver > 0) total += `${silver} de plata`;
+    if (silver > 0) total += ` ${Math.floor(silver)} de plata`;
+    if(copper > 0) total += ` ${copper} de cobre`;
 
     return total;
 }
