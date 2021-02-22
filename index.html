@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mina de ópalo</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body onload="Init()">
+    <h1 id="Heading">Mina de ópalo</h1>
+    <span id="week"></span>
+    <form id="Form"">
+        <label for="Opals">Ópalos</label>
+        <input name="Opals" type="number" value="1" min="1"><br />
+        <label for="Jeweller">¿Joyero?</label>
+        <input name="Jeweller" type="checkbox"><br />
+        <label for="Miners">¿Cuántos mineros?</label>
+        <input name="Miners" type="number" max="20" min="1" value="4" onchange="UpdateOpalsCount()"><br />
+        <input type="button" id="Submit" value="Calcular" onclick="MineOpals()">
+    </form>
+
+    <p id="NetWorth">Ganancias totales: <span id="NetWorthNumber">0</span></p>
+    <table id="Table">
+        <th>
+            Ópalos
+        </th>
+        <th>
+            ¿Joyero?
+        </th>
+        <th>
+            Mineros
+        </th>
+        <th>
+            Venta
+        </th>
+        <th>
+            Sueldo Joyero
+        </th>
+        <th>
+            Sueldo mineros
+        </th>
+        <th>
+            Ganancia
+        </th>
+    </table>
+
+</body>
+</html>
