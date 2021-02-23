@@ -44,8 +44,8 @@ function MineOpals() {
     row.insertCell(2).innerHTML = miners.value;
     
     var gross = opals.value * (jeweller.checked ? 1000 : 200);
-    var jewellersFee = jeweller.checked ? 2 : 0;
-    var minersFee = miners.value * 0.2;
+    var jewellersFee = (jeweller.checked ? 2 : 0) * 7;
+    var minersFee = miners.value * 0.2 * 7;
     var net = gross - jewellersFee - minersFee;
     var playersProfit = net / 5;
     var grossFormatted = `${gross} de oro`
