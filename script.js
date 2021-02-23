@@ -16,6 +16,7 @@ async function UpdateOpalsCount() {
     document.getElementById("maxYieldDice").innerHTML = `(0)`;
 
     opals.max = maxYieldDice;
+    if(maxYieldDice < opals.value) opals.value = maxYieldDice;
     if (parseInt(miners.value) < parseInt(opals.value)) {
         opals.value = miners.value;
     }
