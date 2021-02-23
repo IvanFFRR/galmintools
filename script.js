@@ -1,11 +1,21 @@
 
-
 async function UpdateOpalsCount() {
     var form = document.getElementById("Form");
     var opals = form.elements.namedItem("Opals");
     var miners = form.elements.namedItem("Miners");
 
-    opals.max = miners.value;
+    var maxYieldDice = miners.value;
+    var dice = [0, 4, 6, 8, 10, 12, 20]
+    while(!dice.includes(parseInt(maxYieldDice))) {
+        maxYieldDice--;
+    }
+
+    if(maxYieldDice > 0)
+        document.getElementById("maxYieldDice").innerHTML = `(1d${maxYieldDice})`;
+    else 
+    document.getElementById("maxYieldDice").innerHTML = `(0)`;
+
+    opals.max = maxYieldDice;
     if (parseInt(miners.value) < parseInt(opals.value)) {
         opals.value = miners.value;
     }

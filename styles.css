@@ -28,5 +28,12 @@ th {
     font-weight: normal;
 }
 
+#maxYieldDice {
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 8pt;
+    padding: 5pt;
+}
+
 tr:nth-child(even) {background:rgb(66, 75, 95)}
 tr:nth-child(odd) {background: rgb(76, 85, 105)}
