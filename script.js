@@ -1,11 +1,10 @@
-
-async function UpdateOpalsCount() {
+function UpdateOpalsCount() {
     var form = document.getElementById("Form");
-    var opals = form.elements.namedItem("Opals");
-    var miners = form.elements.namedItem("Miners");
+    var opals = form.elements.namedItem("opals");
+    var miners = form.elements.namedItem("miners");
 
     var maxYieldDice = miners.value;
-    var dice = [0, 4, 6, 8, 10, 12, 20]
+    var dice = [1, 4, 6, 8, 10, 12, 20]
     while(!dice.includes(parseInt(maxYieldDice))) {
         maxYieldDice--;
     }
@@ -13,7 +12,7 @@ async function UpdateOpalsCount() {
     if(maxYieldDice > 0)
         document.getElementById("maxYieldDice").innerHTML = `(1d${maxYieldDice})`;
     else 
-    document.getElementById("maxYieldDice").innerHTML = `(0)`;
+    document.getElementById("maxYieldDice").innerHTML = `(1)`;
 
     opals.max = maxYieldDice;
     if(maxYieldDice < opals.value) opals.value = maxYieldDice;
@@ -22,7 +21,7 @@ async function UpdateOpalsCount() {
     }
 };
 
-async function Init() {
+function Init() {
     UpdateOpalsCount();
 }
 
@@ -69,7 +68,6 @@ function MineOpals() {
     span.innerText = FormatCoins(networth);
 
     var object = {
-        week: week,
         opals: parseInt(opals.value),
         grossProfit: gross,
         jeweller: jeweller.checked,

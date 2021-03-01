@@ -2,25 +2,28 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mina de ópalo</title>
-    <script src="../script.js"></script>
+    <script src="../script.js">
+    </script>
     <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
+
 <body onload="Init()">
     <h1 id="Heading">Mina de ópalo</h1>
     <span id="week"></span>
-    <form id="Form"">
-        <label for="Opals">Ópalos</label>
-        <input name="Opals" type="number" value="1" min="1"><span id="maxYieldDice"></span><br />
+    <form id="Form" method="POST" action="/" enctype="application/x-www-form-urlencoded">
+        <label for="opals">Ópalos</label>
+        <input name="opals" id="opals" type="number" value="1" min="1"><span id="maxYieldDice"></span><br />
         <label for="Jeweller">¿Joyero?</label>
-        <input name="Jeweller" type="checkbox"><br />
+        <input name="jeweller" id="jeweller" type="checkbox"><br />
         <label for="Miners">¿Cuántos mineros?</label>
-        <input name="Miners" type="number" max="20" min="1" value="4" onchange="UpdateOpalsCount()"><br />
-        <input type="button" id="Submit" value="Calcular" onclick="MineOpals()">
+        <input name="miners" id="miners" type="number" max="20" min="1" value="4" onchange="UpdateOpalsCount()"><br />
+        <input type="submit" id="Submit" value="Calcular">
     </form>
 
-    <p id="NetWorth">Ganancias totales: <span id="NetWorthNumber">0</span></p>
-    
+    <p id="NetWorth">Ganancias totales: <span id="NetWorthNumber"> <%= total %></span></p>
+
     <table id="Table">
         <th>
             Ópalos
@@ -46,7 +49,36 @@
         <th>
             Ganancia x PJ
         </th>
+        <% rows.forEach(function(row) { %>
+            <tr>
+                <td>
+                    <%= row.opals %>
+                </td>
+                <td>
+                    <%= row.jeweller %> 
+                </td>
+                <td>
+                    <%= row.miners %>
+                </td>
+                <td>
+                    <%= row.grossprofit %>
+                </td>
+                <td>
+                    <%= row.jewellersfee %>
+                </td>
+                <td>
+                    <%= row.minersfee %>
+                </td>
+                <td>
+                    <%= row.netprofit %>
+                </td>
+                <td>
+                    <%= row.playerprofit %>
+                </td>
+            </tr>
+            <% });%>
     </table>
 
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:admin@localhost:5432/Galmin';
-const { Pool } = require('pg');
+const { Pool } = require('pg')
 
 module.exports = {
     pool: new Pool({
@@ -8,7 +8,7 @@ module.exports = {
             rejectUnauthorized: false,
             requestCert: true
         } : false,
-        
-    })
-}
 
+    }),
+    connectionString: connectionString
+}
